@@ -24,10 +24,9 @@ champ_aux = ["Aatrox", "Ahri", "Akali", "Alistar", "Amumu", "Anivia", "Annie", "
              "Syndra", "TahmKench", "Taliyah", "Talon", "Taric", "Teemo", "Thresh", "Tristana", "Trundle", "Tryndamere",
              "TwistedFate", "Twitch", "Udyr", "Urgot", "Varus", "Vayne", "Veigar", "Velkoz", "Vi", "Viktor", "Vladimir",
              "Volibear", "Warwick", "Xayah", "Xerath", "XinZhao", "Yasuo", "Yorick", "Yuumi", "Zac", "Zed", "Ziggs",
-             "Zilean", "Zoe", "Zyra",]
+             "Zilean", "Zoe", "Zyra", ]
 
 enemies = []
-
 
 
 # Returns spell name. Input = spell key (INTEGER)
@@ -49,13 +48,12 @@ def get_champion(key):
             return c
             break
 
-def get_data(ser,pla):
-    api_key = "RGAPI-90cd8536-a213-4c3b-848e-c00a3d459a05"
+
+def get_data(ser, pla):
+    api_key = "RGAPI-fa772cd5-8794-437d-8e55-b41e4831cd72"
     watcher = LolWatcher(api_key)
     my_region = ser
     my_summoner_name = pla
-
-
 
     # Get searched player
     player = watcher.summoner.by_name(my_region, my_summoner_name)
@@ -84,8 +82,6 @@ def get_data(ser,pla):
     blue_team = [player_one, player_two, player_three, player_four, palyer_five]
     red_team = [player_six, player_seven, player_eight, player_nine, player_ten]
 
-
-
     if my_name in blue_team_aux:
         enemies = red_team
     else:
@@ -101,9 +97,4 @@ def get_data(ser,pla):
         champion = get_champion(enemy['championId'])
         game_info.append([champion, summoner1, summoner2])
 
-
-    return(game_info)
-
-
-
-
+    return game_info

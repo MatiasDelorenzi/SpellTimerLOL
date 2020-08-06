@@ -1,3 +1,16 @@
+<ErrorWindow>:
+    Label:
+        text: "This summoner is not currently in a game"
+    Button:
+        pos_hint: {"x":0.2, "y":0.05}
+        size_hint: 0.6, 0.2
+        font_size: (root.width**2 + root.height**2) / 13**4
+        text: "TRY AGAIN"
+        on_release:
+            root.manager.transition.direction = "up"
+            root.try_again()
+
+
 <WelcomeWindow>:
     name: "welcome"
     summoner: summoner

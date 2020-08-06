@@ -1,4 +1,5 @@
 from riot_api import get_data
+
 import kivy
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen
@@ -35,12 +36,17 @@ class WelcomeWindow(Screen):
 
     def getStartedBtn(self):
         self.reset()
-        sm.current = "game"
 
     def get_user_info(self):
-        GameWindow.data = get_data(self.server.text, self.summoner.text)
-        GameWindow.player_one_d = "spells/" + get_spell(GameWindow.data[0][1])
-        GameWindow.image.source = GameWindow.player_one_d
+        try:
+            get_data(self.server.text, self.summoner.text)
+        except:
+            sm.current='error'
+        else:
+            GameWindow.data = get_data(self.server.text, self.summoner.text)
+            GameWindow.player_one_d = "spells/" + get_spell(GameWindow.data[0][1])
+            GameWindow.image.source = GameWindow.player_one_d
+            sm.current = "game"
 
     def reset(self):
         self.summoner.text = ""
@@ -66,13 +72,18 @@ class GameWindow(Screen):
         sm.current = "welcome"
 
 
+class ErrorWindow(Screen):
+    def try_again(self):
+        sm.current = "welcome"
+
+
 class WindowManagaer(ScreenManager):
     pass
 
 
 kv = Builder.load_file("summonertimer.kv")
 sm = WindowManagaer()
-screens = [WelcomeWindow(name="welcome"), GameWindow(name='game')]
+screens = [WelcomeWindow(name="welcome"), GameWindow(name='game'), ErrorWindow(name='error')]
 
 for screen in screens:
     sm.add_widget(screen)
