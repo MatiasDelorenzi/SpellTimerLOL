@@ -34,22 +34,24 @@ class WelcomeWindow(Screen):
     summoner = ObjectProperty(None)
     server = ObjectProperty(None)
 
-    def getStartedBtn(self):
-        self.reset()
+    def get_started(self):
+        LoadingWindow.sv = self.server
+        LoadingWindow.summ = self.summoner
+        sm.current = 'loading'
+        #self.summoner.text = ""
 
-    def get_user_info(self):
-        try:
-            get_data(self.server.text, self.summoner.text)
-        except:
-            sm.current='error'
-        else:
-            GameWindow.data = get_data(self.server.text, self.summoner.text)
-            GameWindow.player_one_d = "spells/" + get_spell(GameWindow.data[0][1])
-            GameWindow.image.source = GameWindow.player_one_d
-            sm.current = "game"
 
-    def reset(self):
-        self.summoner.text = ""
+    #    def get_user_info(self):
+
+    # try:
+    #    get_data(self.server.text, self.summoner.text)
+    # except:
+    #    sm.current = 'error'
+    # else:
+    #    GameWindow.data = get_data(self.server.text, self.summoner.text)
+    #   GameWindow.player_one_d = "spells/" + get_spell(GameWindow.data[0][1])
+    #  GameWindow.image.source = GameWindow.player_one_d
+    # sm.current = 'game'
 
 
 class GameWindow(Screen):
@@ -77,13 +79,34 @@ class ErrorWindow(Screen):
         sm.current = "welcome"
 
 
+class LoadingWindow(Screen):
+    sv = ObjectProperty(None)
+    summ = ObjectProperty(None)
+
+    def on_enter(self, *args):
+        #print(get_data((self.sv.text, self.summ.text)))
+        print(self.sv.text)
+        print(self.summ.text)
+        try:
+            get_data(self.sv.text, self.summ.text)
+        except:
+            sm.current = 'error'
+        else:
+            GameWindow.data = get_data(self.sv.text, self.summ.text)
+            GameWindow.player_one_d = "spells/" + get_spell(GameWindow.data[0][1])
+            GameWindow.image.source = GameWindow.player_one_d
+
+            sm.current = 'game'
+
+
 class WindowManagaer(ScreenManager):
     pass
 
 
 kv = Builder.load_file("summonertimer.kv")
 sm = WindowManagaer()
-screens = [WelcomeWindow(name="welcome"), GameWindow(name='game'), ErrorWindow(name='error')]
+screens = [WelcomeWindow(name="welcome"), GameWindow(name='game'), ErrorWindow(name='error'),
+           LoadingWindow(name='loading')]
 
 for screen in screens:
     sm.add_widget(screen)
