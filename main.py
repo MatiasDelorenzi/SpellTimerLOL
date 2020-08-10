@@ -1,5 +1,5 @@
 from riot_api import get_data
-
+from getsumm import get_server
 import kivy
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen
@@ -38,20 +38,6 @@ class WelcomeWindow(Screen):
         LoadingWindow.sv = self.server
         LoadingWindow.summ = self.summoner
         sm.current = 'loading'
-        #self.summoner.text = ""
-
-
-    #    def get_user_info(self):
-
-    # try:
-    #    get_data(self.server.text, self.summoner.text)
-    # except:
-    #    sm.current = 'error'
-    # else:
-    #    GameWindow.data = get_data(self.server.text, self.summoner.text)
-    #   GameWindow.player_one_d = "spells/" + get_spell(GameWindow.data[0][1])
-    #  GameWindow.image.source = GameWindow.player_one_d
-    # sm.current = 'game'
 
 
 class GameWindow(Screen):
@@ -84,27 +70,25 @@ class LoadingWindow(Screen):
     summ = ObjectProperty(None)
 
     def on_enter(self, *args):
-        #print(get_data((self.sv.text, self.summ.text)))
-        print(self.sv.text)
-        print(self.summ.text)
+        server_key = get_server(self.sv.text)
         try:
-            get_data(self.sv.text, self.summ.text)
+            get_data(server_key, self.summ.text)
         except:
             sm.current = 'error'
         else:
-            GameWindow.data = get_data(self.sv.text, self.summ.text)
+            GameWindow.data = get_data(server_key, self.summ.text)
             GameWindow.player_one_d = "spells/" + get_spell(GameWindow.data[0][1])
             GameWindow.image.source = GameWindow.player_one_d
 
             sm.current = 'game'
 
 
-class WindowManagaer(ScreenManager):
+class WindowManager(ScreenManager):
     pass
 
 
 kv = Builder.load_file("summonertimer.kv")
-sm = WindowManagaer()
+sm = WindowManager()
 screens = [WelcomeWindow(name="welcome"), GameWindow(name='game'), ErrorWindow(name='error'),
            LoadingWindow(name='loading')]
 
