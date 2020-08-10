@@ -55,31 +55,15 @@
 
 
 <GameWindow>:
+    background: background
     FloatLayout:
-        Button:
-            pos_hint: {"x":0.05, "y":0.85}
-            size_hint: None, None
-            size: 64, 64
-            font_size: (root.width**2 + root.height**2) / 13**4
-            on_release:
-                root.test_print()
-
-   
-
-
-
-
-
-    FloatLayout:
-
+        id: background
         Button:
             pos_hint: {"x":0.05, "y":0.05}
             size_hint: 0.2, 0.1
             font_size: (root.width**2 + root.height**2) / 13**4
             text: "EXIT"
-            on_release:
-                root.manager.transition.direction = "down"
-                root.exitBtn()
+
 
 
 

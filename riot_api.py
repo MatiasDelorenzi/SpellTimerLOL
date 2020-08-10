@@ -50,7 +50,7 @@ def get_champion(key):
 
 
 def get_data(ser, pla):
-    api_key = "RGAPI-7240aca9-b2db-4eba-883c-6a055d30c1f2"
+    api_key = "RGAPI-eaa086cf-6253-461d-b186-f03edc1d5298"
     watcher = LolWatcher(api_key)
     my_region = ser
     my_summoner_name = pla

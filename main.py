@@ -1,12 +1,20 @@
+from kivy.graphics.vertex_instructions import Line
+from kivy.uix.button import Button
+from kivy.uix.widget import Widget
 from riot_api import get_data
 from getsumm import get_server
 import kivy
+import time
+from kivy.core.window import Window
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty
 from getsumm import get_spell
 from kivy.uix.image import Image
+from kivy.clock import Clock
+from kivy.uix.gridlayout import GridLayout
+
 
 
 # player_one_champion = data[0][0]
@@ -42,22 +50,39 @@ class WelcomeWindow(Screen):
 
 class GameWindow(Screen):
     data = []
-    player_one_d = ""
     image = Image(source="")
 
-    def get_image_1(self):
-        print(self.player_one_d)
-        return self.player_one_d
-
-    def test_print(self):
-        print("Button Pressed")
-
-    def on_enter(self, *args):
-        print(self.data)
-        print(self.player_one_d)
 
     def exitBtn(self):
         sm.current = "welcome"
+
+    def on_enter(self):
+        scr_width = Window.size[0]
+        scr_height = Window.size[1]
+        #space horizontal = +-0.30 // space vertical = +-0.15
+        self.background.add_widget(Button(pos=(scr_width * 0.10, scr_height * 0.85), size_hint=(None, None), size=(64, 64)))
+        self.background.add_widget(Button(pos=(scr_width * 0.40, scr_height * 0.85), size_hint=(None, None), size=(64, 64)))
+        self.background.add_widget(Button(pos=(scr_width * 0.70, scr_height * 0.85), size_hint=(None, None), size=(64, 64)))
+
+        self.background.add_widget(Button(pos=(scr_width * 0.10, scr_height * 0.70), size_hint=(None, None), size=(64, 64)))
+        self.background.add_widget(Button(pos=(scr_width * 0.40, scr_height * 0.70), size_hint=(None, None), size=(64, 64)))
+        self.background.add_widget(Button(pos=(scr_width * 0.70, scr_height * 0.70), size_hint=(None, None), size=(64, 64)))
+
+        self.background.add_widget(Button(pos=(scr_width * 0.10, scr_height * 0.55), size_hint=(None, None), size=(64, 64)))
+        self.background.add_widget(Button(pos=(scr_width * 0.40, scr_height * 0.55), size_hint=(None, None), size=(64, 64)))
+        self.background.add_widget(Button(pos=(scr_width * 0.70, scr_height * 0.55), size_hint=(None, None), size=(64, 64)))
+
+        self.background.add_widget(Button(pos=(scr_width * 0.10, scr_height * 0.40), size_hint=(None, None), size=(64, 64)))
+        self.background.add_widget(Button(pos=(scr_width * 0.40, scr_height * 0.40), size_hint=(None, None), size=(64, 64)))
+        self.background.add_widget(Button(pos=(scr_width * 0.70, scr_height * 0.40), size_hint=(None, None), size=(64, 64)))
+
+        self.background.add_widget(Button(pos=(scr_width * 0.10, scr_height * 0.25), size_hint=(None, None), size=(64, 64)))
+        self.background.add_widget(Button(pos=(scr_width * 0.40, scr_height * 0.25), size_hint=(None, None), size=(64, 64)))
+        self.background.add_widget(Button(pos=(scr_width * 0.70, scr_height * 0.25), size_hint=(None, None), size=(64, 64)))
+
+
+
+        sm.current = "game"
 
 
 class ErrorWindow(Screen):
