@@ -55,14 +55,117 @@
 
 
 <GameWindow>:
-    background: background
-    FloatLayout:
-        id: background
-        Button:
-            pos_hint: {"x":0.05, "y":0.05}
-            size_hint: 0.2, 0.1
-            font_size: (root.width**2 + root.height**2) / 13**4
-            text: "EXIT"
+    enemy_1_spell_1 : enemy_1_spell_1
+    enemy_1_spell_2 : enemy_1_spell_2
+    enemy_1_champion: enemy_1_champion
+    enemy_2_spell_1 : enemy_2_spell_1
+    enemy_2_spell_2 : enemy_2_spell_2
+    enemy_2_champion: enemy_2_champion
+    enemy_3_spell_1 : enemy_3_spell_1
+    enemy_3_spell_2 : enemy_3_spell_2
+    enemy_3_champion: enemy_3_champion
+    enemy_4_spell_1 : enemy_4_spell_1
+    enemy_4_spell_2 : enemy_4_spell_2
+    enemy_4_champion: enemy_4_champion
+    enemy_5_spell_1 : enemy_5_spell_1
+    enemy_5_spell_2 : enemy_5_spell_2
+    enemy_5_champion: enemy_5_champion
+    GridLayout:
+        rows:6
+        GridLayout:
+            cols:3
+            Image:
+                id: enemy_1_champion
+                source:""
+            Button:
+                id: enemy_1_spell_1
+                text:""
+                on_release:
+                    root.start_enemy1_spell1()
+            Button:
+                id: enemy_1_spell_2
+                text:""
+                on_release:
+                    root.start_enemy1_spell2()
+
+        GridLayout:
+            cols:3
+            Image:
+                id: enemy_2_champion
+                source:""
+            Button:
+                id: enemy_2_spell_1
+                text:""
+                on_release:
+                    root.start_enemy2_spell1()
+            Button:
+                id: enemy_2_spell_2
+                text:""
+                on_release:
+                    root.start_enemy2_spell2()
+
+        GridLayout:
+            cols:3
+            Image:
+                id:enemy_3_champion
+                source:""
+            Button:
+                id: enemy_3_spell_1
+                text:""
+                on_release:
+                    root.start_enemy3_spell1()
+            Button:
+                id: enemy_3_spell_2
+                text:""
+                on_release:
+                    root.start_enemy3_spell2()
+
+        GridLayout:
+            cols:3
+            Image:
+                id:enemy_4_champion
+                source:""
+            Button:
+                id: enemy_4_spell_1
+                text:""
+                on_release:
+                    root.start_enemy4_spell1()
+            Button:
+                id: enemy_4_spell_2
+                text:""
+                on_release:
+                    root.start_enemy4_spell2()
+
+        GridLayout:
+            cols:3
+            Image:
+                id: enemy_5_champion
+                source:""
+            Button:
+                id: enemy_5_spell_1
+                text:""
+                on_release:
+                    root.start_enemy5_spell1()
+            Button:
+                id: enemy_5_spell_2
+                text:""
+                on_release:
+                    root.start_enemy5_spell2()
+
+
+        GridLayout:
+            cols:3
+            Button:
+                text:"exit"
+                on_release:
+                    root.exit_btn()
+            Label:
+                text:""
+            Label:
+                text:""
+
+
+
 
 
 

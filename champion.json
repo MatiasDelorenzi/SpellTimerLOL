@@ -7015,6 +7015,56 @@
       "attackspeed": 0.697
     }
   },
+  "Yone": {
+    "version": "10.16.1",
+    "id": "Yone",
+    "key": "777",
+    "name": "Yone",
+    "title": "the Unforgotten",
+    "blurb": "In life, he was Yone—half-brother of Yasuo, and renowned student of his village's sword school. But upon his death at the hands of his brother, he found himself hunted by a malevolent entity of the spirit realm, and was forced to slay it with its own...",
+    "info": {
+      "attack": 8,
+      "defense": 4,
+      "magic": 4,
+      "difficulty": 8
+    },
+    "image": {
+      "full": "Yone.png",
+      "sprite": "champion4.png",
+      "group": "champion",
+      "x": 48,
+      "y": 96,
+      "w": 48,
+      "h": 48
+    },
+    "tags": [
+      "Assassin",
+      "Fighter"
+    ],
+    "partype": "Flow",
+    "stats": {
+      "hp": 550,
+      "hpperlevel": 85,
+      "mp": 500,
+      "mpperlevel": 0,
+      "movespeed": 345,
+      "armor": 28,
+      "armorperlevel": 3.4,
+      "spellblock": 32,
+      "spellblockperlevel": 1.25,
+      "attackrange": 175,
+      "hpregen": 7.5,
+      "hpregenperlevel": 0.75,
+      "mpregen": 0,
+      "mpregenperlevel": 0,
+      "crit": 0,
+      "critperlevel": 0,
+      "attackdamage": 60,
+      "attackdamageperlevel": 3,
+      "attackspeedperlevel": 2.5,
+      "attackspeed": 0.625
+    }
+  },
   "Yorick": {
     "version": "10.15.1",
     "id": "Yorick",

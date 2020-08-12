@@ -23,7 +23,7 @@ champ_aux = ["Aatrox", "Ahri", "Akali", "Alistar", "Amumu", "Anivia", "Annie", "
              "Sett", "Shaco", "Shen", "Shyvana", "Singed", "Sion", "Sivir", "Skarner", "Sona", "Swain", "Sylas",
              "Syndra", "TahmKench", "Taliyah", "Talon", "Taric", "Teemo", "Thresh", "Tristana", "Trundle", "Tryndamere",
              "TwistedFate", "Twitch", "Udyr", "Urgot", "Varus", "Vayne", "Veigar", "Velkoz", "Vi", "Viktor", "Vladimir",
-             "Volibear", "Warwick", "Xayah", "Xerath", "XinZhao", "Yasuo", "Yorick", "Yuumi", "Zac", "Zed", "Ziggs",
+             "Volibear", "Warwick", "Xayah", "Xerath", "XinZhao", "Yasuo", "Yone", "Yorick", "Yuumi", "Zac", "Zed", "Ziggs",
              "Zilean", "Zoe", "Zyra", ]
 
 enemies = []
@@ -50,7 +50,7 @@ def get_champion(key):
 
 
 def get_data(ser, pla):
-    api_key = "RGAPI-eaa086cf-6253-461d-b186-f03edc1d5298"
+    api_key = "RGAPI-7f02e758-6b0b-4618-a731-61e9ac39b018"
     watcher = LolWatcher(api_key)
     my_region = ser
     my_summoner_name = pla
