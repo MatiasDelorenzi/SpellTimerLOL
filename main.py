@@ -1,3 +1,4 @@
+import math
 from riot_api import get_data
 from gameinfo import get_server, get_spell_image, get_champion_image, get_cd
 from kivy.app import App
@@ -44,6 +45,16 @@ class GameWindow(Screen):
     started4_1 = False
     started5 = False
     started5_1 = False
+    boots1 = False
+    boots2 = False
+    boots3 = False
+    boots4 = False
+    boots5 = False
+    rune1 = False
+    rune2 = False
+    rune3 = False
+    rune4 = False
+    rune5 = False
 
     def on_enter(self, *args):
         self.player_one_champion = self.data[0][0]
@@ -92,7 +103,24 @@ class GameWindow(Screen):
             self.stop_enemy1_spell1()
         else:
             self.started1 = True
-            self.ids.enemy_1_spell_1.text = get_cd(self.player_one_d)
+            if not self.boots1 and not self.rune1:
+                self.ids.enemy_1_spell_1.text = get_cd(self.player_one_d)
+            elif self.boots1 and self.rune1:
+                cd = int(get_cd(self.player_one_d))
+                cd = cd - cd * 5 / 100
+                cd = cd - cd * 10 / 100
+                cd = math.trunc(cd)
+                self.ids.enemy_1_spell_1.text = str(cd)
+            elif self.boots1:
+                cd = int(get_cd(self.player_one_d))
+                cd = cd - cd * 10 / 100
+                cd = math.trunc(cd)
+                self.ids.enemy_1_spell_1.text = str(cd)
+            elif self.rune1:
+                cd = int(get_cd(self.player_one_d))
+                cd = cd - cd * 5 / 100
+                cd = math.trunc(cd)
+                self.ids.enemy_1_spell_1.text = str(cd)
             self.timer_enemy1_spell1 = Clock.schedule_interval(self.update_enemy1_spell1, 1)
             self.ids.enemy_1_spell_1.background_normal = "./spells/" + self.player_one_d + "Dark.png"
 
@@ -108,6 +136,20 @@ class GameWindow(Screen):
         self.ids.enemy_1_spell_1.text = ""
         self.ids.enemy_1_spell_1.background_normal = get_spell_image(self.player_one_d)
 
+    def trigger_boots1(self):
+        if self.boots1:
+            self.ids.enemy_1_boots.background_normal = './spells/Boots.png'
+        else:
+            self.ids.enemy_1_boots.background_normal = './spells/BootsOn.png'
+        self.boots1 = not self.boots1
+
+    def trigger_rune1(self):
+        if self.rune1:
+            self.ids.enemy_1_rune.background_normal = './spells/Rune.png'
+        else:
+            self.ids.enemy_1_rune.background_normal = './spells/RuneOn.png'
+        self.rune1 = not self.rune1
+
 ########################################################################
 
     def start_enemy1_spell2(self):
@@ -116,7 +158,24 @@ class GameWindow(Screen):
             self.stop_enemy1_spell2()
         else:
             self.started1_1 = True
-            self.ids.enemy_1_spell_2.text = get_cd(self.player_one_f)
+            if not self.boots1 and not self.rune1:
+                self.ids.enemy_1_spell_2.text = get_cd(self.player_one_f)
+            elif self.boots1 and self.rune1:
+                cd = int(get_cd(self.player_one_f))
+                cd = cd - cd * 5 / 100
+                cd = cd - cd * 10 / 100
+                cd = math.trunc(cd)
+                self.ids.enemy_1_spell_2.text = str(cd)
+            elif self.boots1:
+                cd = int(get_cd(self.player_one_f))
+                cd = cd - cd * 10 / 100
+                cd = math.trunc(cd)
+                self.ids.enemy_1_spell_2.text = str(cd)
+            elif self.rune1:
+                cd = int(get_cd(self.player_one_f))
+                cd = cd - cd * 5 / 100
+                cd = math.trunc(cd)
+                self.ids.enemy_1_spell_2.text = str(cd)
             self.timer_enemy1_spell2 = Clock.schedule_interval(self.update_enemy1_spell2, 1)
             self.ids.enemy_1_spell_2.background_normal = "./spells/" + self.player_one_f + "Dark.png"
 
@@ -132,7 +191,7 @@ class GameWindow(Screen):
         self.ids.enemy_1_spell_2.text = ""
         self.ids.enemy_1_spell_2.background_normal = get_spell_image(self.player_one_f)
 
-########################################################################
+    ########################################################################
 
     def start_enemy2_spell1(self):
         if self.started2:
@@ -140,7 +199,24 @@ class GameWindow(Screen):
             self.stop_enemy2_spell1()
         else:
             self.started2 = True
-            self.ids.enemy_2_spell_1.text = get_cd(self.player_two_d)
+            if not self.boots2 and not self.rune2:
+                self.ids.enemy_2_spell_1.text = get_cd(self.player_two_d)
+            elif self.boots2 and self.rune2:
+                cd = int(get_cd(self.player_two_d))
+                cd = cd - cd * 5 / 100
+                cd = cd - cd * 10 / 100
+                cd = math.trunc(cd)
+                self.ids.enemy_2_spell_1.text = str(cd)
+            elif self.boots2:
+                cd = int(get_cd(self.player_two_d))
+                cd = cd - cd * 10 / 100
+                cd = math.trunc(cd)
+                self.ids.enemy_2_spell_1.text = str(cd)
+            elif self.rune2:
+                cd = int(get_cd(self.player_two_d))
+                cd = cd - cd * 5 / 100
+                cd = math.trunc(cd)
+                self.ids.enemy_2_spell_1.text = str(cd)
             self.timer_enemy2_spell1 = Clock.schedule_interval(self.update_enemy2_spell1, 1)
             self.ids.enemy_2_spell_1.background_normal = "./spells/" + self.player_two_d + "Dark.png"
 
@@ -156,7 +232,21 @@ class GameWindow(Screen):
         self.ids.enemy_2_spell_1.text = ""
         self.ids.enemy_2_spell_1.background_normal = get_spell_image(self.player_two_d)
 
-########################################################################
+    def trigger_boots2(self):
+        if self.boots2:
+            self.ids.enemy_2_boots.background_normal = './spells/Boots.png'
+        else:
+            self.ids.enemy_2_boots.background_normal = './spells/BootsOn.png'
+        self.boots2 = not self.boots2
+
+    def trigger_rune2(self):
+        if self.rune2:
+            self.ids.enemy_2_rune.background_normal = './spells/Rune.png'
+        else:
+            self.ids.enemy_2_rune.background_normal = './spells/RuneOn.png'
+        self.rune2 = not self.rune2
+
+    ########################################################################
 
     def start_enemy2_spell2(self):
         if self.started2_1:
@@ -164,7 +254,24 @@ class GameWindow(Screen):
             self.stop_enemy2_spell2()
         else:
             self.started2_1 = True
-            self.ids.enemy_2_spell_2.text = get_cd(self.player_two_f)
+            if not self.boots2 and not self.rune2:
+                self.ids.enemy_2_spell_2.text = get_cd(self.player_two_f)
+            elif self.boots2 and self.rune2:
+                cd = int(get_cd(self.player_two_f))
+                cd = cd - cd * 5 / 100
+                cd = cd - cd * 10 / 100
+                cd = math.trunc(cd)
+                self.ids.enemy_2_spell_2.text = str(cd)
+            elif self.boots2:
+                cd = int(get_cd(self.player_two_f))
+                cd = cd - cd * 10 / 100
+                cd = math.trunc(cd)
+                self.ids.enemy_2_spell_2.text = str(cd)
+            elif self.rune2:
+                cd = int(get_cd(self.player_two_f))
+                cd = cd - cd * 5 / 100
+                cd = math.trunc(cd)
+                self.ids.enemy_2_spell_2.text = str(cd)
             self.timer_enemy2_spell2 = Clock.schedule_interval(self.update_enemy2_spell2, 1)
             self.ids.enemy_2_spell_2.background_normal = "./spells/" + self.player_two_f + "Dark.png"
 
@@ -180,7 +287,7 @@ class GameWindow(Screen):
         self.ids.enemy_2_spell_2.text = ""
         self.ids.enemy_2_spell_2.background_normal = get_spell_image(self.player_two_f)
 
-########################################################################
+    ########################################################################
 
     def start_enemy3_spell1(self):
         if self.started3:
@@ -188,7 +295,24 @@ class GameWindow(Screen):
             self.stop_enemy3_spell1()
         else:
             self.started3 = True
-            self.ids.enemy_3_spell_1.text = get_cd(self.player_three_d)
+            if not self.boots3 and not self.rune3:
+                self.ids.enemy_3_spell_1.text = get_cd(self.player_three_d)
+            elif self.boots3 and self.rune3:
+                cd = int(get_cd(self.player_three_d))
+                cd = cd - cd * 5 / 100
+                cd = cd - cd * 10 / 100
+                cd = math.trunc(cd)
+                self.ids.enemy_3_spell_1.text = str(cd)
+            elif self.boots3:
+                cd = int(get_cd(self.player_three_d))
+                cd = cd - cd * 10 / 100
+                cd = math.trunc(cd)
+                self.ids.enemy_3_spell_1.text = str(cd)
+            elif self.rune3:
+                cd = int(get_cd(self.player_three_d))
+                cd = cd - cd * 5 / 100
+                cd = math.trunc(cd)
+                self.ids.enemy_3_spell_1.text = str(cd)
             self.timer_enemy3_spell1 = Clock.schedule_interval(self.update_enemy3_spell1, 1)
             self.ids.enemy_3_spell_1.background_normal = "./spells/" + self.player_three_d + "Dark.png"
 
@@ -204,7 +328,21 @@ class GameWindow(Screen):
         self.ids.enemy_3_spell_1.text = ""
         self.ids.enemy_3_spell_1.background_normal = get_spell_image(self.player_three_d)
 
-########################################################################
+    def trigger_boots3(self):
+        if self.boots3:
+            self.ids.enemy_3_boots.background_normal = './spells/Boots.png'
+        else:
+            self.ids.enemy_3_boots.background_normal = './spells/BootsOn.png'
+        self.boots3 = not self.boots3
+
+    def trigger_rune3(self):
+        if self.rune3:
+            self.ids.enemy_3_rune.background_normal = './spells/Rune.png'
+        else:
+            self.ids.enemy_3_rune.background_normal = './spells/RuneOn.png'
+        self.rune3 = not self.rune3
+
+    ########################################################################
 
     def start_enemy3_spell2(self):
         if self.started3_1:
@@ -212,7 +350,24 @@ class GameWindow(Screen):
             self.stop_enemy3_spell2()
         else:
             self.started3_1 = True
-            self.ids.enemy_3_spell_2.text = get_cd(self.player_three_f)
+            if not self.boots3 and not self.rune3:
+                self.ids.enemy_3_spell_2.text = get_cd(self.player_three_f)
+            elif self.boots3 and self.rune3:
+                cd = int(get_cd(self.player_three_f))
+                cd = cd - cd * 5 / 100
+                cd = cd - cd * 10 / 100
+                cd = math.trunc(cd)
+                self.ids.enemy_3_spell_2.text = str(cd)
+            elif self.boots3:
+                cd = int(get_cd(self.player_three_f))
+                cd = cd - cd * 10 / 100
+                cd = math.trunc(cd)
+                self.ids.enemy_3_spell_2.text = str(cd)
+            elif self.rune3:
+                cd = int(get_cd(self.player_three_f))
+                cd = cd - cd * 5 / 100
+                cd = math.trunc(cd)
+                self.ids.enemy_3_spell_2.text = str(cd)
             self.timer_enemy3_spell2 = Clock.schedule_interval(self.update_enemy3_spell2, 1)
             self.ids.enemy_3_spell_2.background_normal = "./spells/" + self.player_three_f + "Dark.png"
 
@@ -228,7 +383,7 @@ class GameWindow(Screen):
         self.ids.enemy_3_spell_2.text = ""
         self.ids.enemy_3_spell_2.background_normal = get_spell_image(self.player_three_f)
 
-########################################################################
+    ########################################################################
 
     def start_enemy4_spell1(self):
         if self.started4:
@@ -236,7 +391,24 @@ class GameWindow(Screen):
             self.stop_enemy4_spell1()
         else:
             self.started4 = True
-            self.ids.enemy_4_spell_1.text = get_cd(self.player_four_d)
+            if not self.boots4 and not self.rune4:
+                self.ids.enemy_4_spell_1.text = get_cd(self.player_four_d)
+            elif self.boots4 and self.rune4:
+                cd = int(get_cd(self.player_four_d))
+                cd = cd - cd * 5 / 100
+                cd = cd - cd * 10 / 100
+                cd = math.trunc(cd)
+                self.ids.enemy_4_spell_1.text = str(cd)
+            elif self.boots4:
+                cd = int(get_cd(self.player_four_d))
+                cd = cd - cd * 10 / 100
+                cd = math.trunc(cd)
+                self.ids.enemy_4_spell_1.text = str(cd)
+            elif self.rune4:
+                cd = int(get_cd(self.player_four_d))
+                cd = cd - cd * 5 / 100
+                cd = math.trunc(cd)
+                self.ids.enemy_4_spell_1.text = str(cd)
             self.timer_enemy4_spell1 = Clock.schedule_interval(self.update_enemy4_spell1, 1)
             self.ids.enemy_4_spell_1.background_normal = "./spells/" + self.player_four_d + "Dark.png"
 
@@ -252,7 +424,20 @@ class GameWindow(Screen):
         self.ids.enemy_4_spell_1.text = ""
         self.ids.enemy_4_spell_1.background_normal = get_spell_image(self.player_four_d)
 
-########################################################################
+    def trigger_boots4(self):
+        if self.boots4:
+            self.ids.enemy_4_boots.background_normal = './spells/Boots.png'
+        else:
+            self.ids.enemy_4_boots.background_normal = './spells/BootsOn.png'
+        self.boots4 = not self.boots4
+
+    def trigger_rune4(self):
+        if self.rune4:
+            self.ids.enemy_4_rune.background_normal = './spells/Rune.png'
+        else:
+            self.ids.enemy_4_rune.background_normal = './spells/RuneOn.png'
+        self.rune4 = not self.rune4
+    ########################################################################
 
     def start_enemy4_spell2(self):
         if self.started4_1:
@@ -260,7 +445,24 @@ class GameWindow(Screen):
             self.stop_enemy4_spell2()
         else:
             self.started4_1 = True
-            self.ids.enemy_4_spell_2.text = get_cd(self.player_four_f)
+            if not self.boots4 and not self.rune4:
+                self.ids.enemy_4_spell_2.text = get_cd(self.player_four_f)
+            elif self.boots4 and self.rune4:
+                cd = int(get_cd(self.player_four_f))
+                cd = cd - cd * 5 / 100
+                cd = cd - cd * 10 / 100
+                cd = math.trunc(cd)
+                self.ids.enemy_4_spell_2.text = str(cd)
+            elif self.boots4:
+                cd = int(get_cd(self.player_four_f))
+                cd = cd - cd * 10 / 100
+                cd = math.trunc(cd)
+                self.ids.enemy_4_spell_2.text = str(cd)
+            elif self.rune4:
+                cd = int(get_cd(self.player_four_f))
+                cd = cd - cd * 5 / 100
+                cd = math.trunc(cd)
+                self.ids.enemy_4_spell_2.text = str(cd)
             self.timer_enemy4_spell2 = Clock.schedule_interval(self.update_enemy4_spell2, 1)
             self.ids.enemy_4_spell_2.background_normal = "./spells/" + self.player_four_f + "Dark.png"
 
@@ -276,7 +478,7 @@ class GameWindow(Screen):
         self.ids.enemy_4_spell_2.text = ""
         self.ids.enemy_4_spell_2.background_normal = get_spell_image(self.player_four_f)
 
-########################################################################
+    ########################################################################
 
     def start_enemy5_spell1(self):
         if self.started5:
@@ -284,7 +486,24 @@ class GameWindow(Screen):
             self.stop_enemy5_spell1()
         else:
             self.started5 = True
-            self.ids.enemy_5_spell_1.text = get_cd(self.player_five_d)
+            if not self.boots5 and not self.rune5:
+                self.ids.enemy_5_spell_1.text = get_cd(self.player_five_d)
+            elif self.boots5 and self.rune5:
+                cd = int(get_cd(self.player_five_d))
+                cd = cd - cd * 5 / 100
+                cd = cd - cd * 10 / 100
+                cd = math.trunc(cd)
+                self.ids.enemy_5_spell_1.text = str(cd)
+            elif self.boots5:
+                cd = int(get_cd(self.player_five_d))
+                cd = cd - cd * 10 / 100
+                cd = math.trunc(cd)
+                self.ids.enemy_5_spell_1.text = str(cd)
+            elif self.rune5:
+                cd = int(get_cd(self.player_five_d))
+                cd = cd - cd * 5 / 100
+                cd = math.trunc(cd)
+                self.ids.enemy_5_spell_1.text = str(cd)
             self.timer_enemy5_spell1 = Clock.schedule_interval(self.update_enemy5_spell1, 1)
             self.ids.enemy_5_spell_1.background_normal = "./spells/" + self.player_five_d + "Dark.png"
 
@@ -300,7 +519,21 @@ class GameWindow(Screen):
         self.ids.enemy_5_spell_1.text = ""
         self.ids.enemy_5_spell_1.background_normal = get_spell_image(self.player_five_d)
 
-########################################################################
+    def trigger_boots5(self):
+        if self.boots5:
+            self.ids.enemy_5_boots.background_normal = './spells/Boots.png'
+        else:
+            self.ids.enemy_5_boots.background_normal = './spells/BootsOn.png'
+        self.boots5 = not self.boots5
+
+    def trigger_rune5(self):
+        if self.rune5:
+            self.ids.enemy_5_rune.background_normal = './spells/Rune.png'
+        else:
+            self.ids.enemy_5_rune.background_normal = './spells/RuneOn.png'
+        self.rune5 = not self.rune5
+
+    ########################################################################
 
     def start_enemy5_spell2(self):
         if self.started5_1:
@@ -308,7 +541,24 @@ class GameWindow(Screen):
             self.stop_enemy5_spell2()
         else:
             self.started5_1 = True
-            self.ids.enemy_5_spell_2.text = get_cd(self.player_five_f)
+            if not self.boots5 and not self.rune5:
+                self.ids.enemy_5_spell_2.text = get_cd(self.player_five_f)
+            elif self.boots5 and self.rune5:
+                cd = int(get_cd(self.player_five_f))
+                cd = cd - cd * 5 / 100
+                cd = cd - cd * 10 / 100
+                cd = math.trunc(cd)
+                self.ids.enemy_5_spell_2.text = str(cd)
+            elif self.boots5:
+                cd = int(get_cd(self.player_five_f))
+                cd = cd - cd * 10 / 100
+                cd = math.trunc(cd)
+                self.ids.enemy_5_spell_2.text = str(cd)
+            elif self.rune5:
+                cd = int(get_cd(self.player_five_f))
+                cd = cd - cd * 5 / 100
+                cd = math.trunc(cd)
+                self.ids.enemy_5_spell_2.text = str(cd)
             self.timer_enemy5_spell2 = Clock.schedule_interval(self.update_enemy5_spell2, 1)
             self.ids.enemy_5_spell_2.background_normal = "./spells/" + self.player_five_f + "Dark.png"
 

@@ -70,10 +70,20 @@
     enemy_5_spell_1 : enemy_5_spell_1
     enemy_5_spell_2 : enemy_5_spell_2
     enemy_5_champion: enemy_5_champion
+    enemy_1_boots : enemy_1_boots
+    enemy_1_rune : enemy_1_rune
+    enemy_2_boots : enemy_2_boots
+    enemy_2_rune : enemy_2_rune
+    enemy_3_boots : enemy_3_boots
+    enemy_3_rune : enemy_3_rune
+    enemy_4_boots : enemy_4_boots
+    enemy_4_rune : enemy_4_rune
+    enemy_5_boots : enemy_5_boots
+    enemy_5_rune : enemy_5_rune
     GridLayout:
         rows:6
         GridLayout:
-            cols:3
+            cols:4
             Image:
                 id: enemy_1_champion
                 source:""
@@ -87,9 +97,21 @@
                 text:""
                 on_release:
                     root.start_enemy1_spell2()
+            GridLayout:
+                rows:2
+                Button:
+                    id : enemy_1_boots
+                    background_normal:'./spells/Boots.png'
+                    on_release:
+                        root.trigger_boots1()
+                Button:
+                    id : enemy_1_rune
+                    background_normal:'./spells/Rune.png'
+                    on_release:
+                        root.trigger_rune1()
 
         GridLayout:
-            cols:3
+            cols:4
             Image:
                 id: enemy_2_champion
                 source:""
@@ -103,9 +125,21 @@
                 text:""
                 on_release:
                     root.start_enemy2_spell2()
+            GridLayout:
+                rows:2
+                Button:
+                    id : enemy_2_boots
+                    background_normal:'./spells/Boots.png'
+                    on_release:
+                        root.trigger_boots2()
+                Button:
+                    id : enemy_2_rune
+                    background_normal:'./spells/Rune.png'
+                    on_release:
+                        root.trigger_rune2()
 
         GridLayout:
-            cols:3
+            cols:4
             Image:
                 id:enemy_3_champion
                 source:""
@@ -119,9 +153,21 @@
                 text:""
                 on_release:
                     root.start_enemy3_spell2()
+            GridLayout:
+                rows:2
+                Button:
+                    id : enemy_3_boots
+                    background_normal:'./spells/Boots.png'
+                    on_release:
+                        root.trigger_boots3()
+                Button:
+                    id : enemy_3_rune
+                    background_normal:'./spells/Rune.png'
+                    on_release:
+                        root.trigger_rune3()
 
         GridLayout:
-            cols:3
+            cols:4
             Image:
                 id:enemy_4_champion
                 source:""
@@ -135,9 +181,22 @@
                 text:""
                 on_release:
                     root.start_enemy4_spell2()
+            GridLayout:
+                rows:2
+                Button:
+                    id:enemy_4_boots
+                    background_normal:'./spells/Boots.png'
+                    on_release:
+                        root.trigger_boots4()
+
+                Button:
+                    id:enemy_4_rune
+                    background_normal:'./spells/Rune.png'
+                    on_release:
+                        root.trigger_rune4()
 
         GridLayout:
-            cols:3
+            cols:4
             Image:
                 id: enemy_5_champion
                 source:""
@@ -151,7 +210,18 @@
                 text:""
                 on_release:
                     root.start_enemy5_spell2()
-
+            GridLayout:
+                rows:2
+                Button:
+                    id:enemy_5_boots
+                    background_normal:'./spells/Boots.png'
+                    on_release:
+                        root.trigger_boots5()
+                Button:
+                    id: enemy_5_rune
+                    background_normal:'./spells/Rune.png'
+                    on_release:
+                        root.trigger_rune5()
 
         GridLayout:
             cols:3
